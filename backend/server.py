@@ -186,8 +186,17 @@ Make sure the total daily nutrition aligns with the user's targets. Return ONLY 
             response_text = response_text[:-3]
         response_text = response_text.strip()
         
-        meal_plan_data = json.loads(response_text)
-        return meal_plan_data
+        # Debug: Print response for troubleshooting
+        print(f"AI Response length: {len(response_text)}")
+        print(f"AI Response preview: {response_text[:500]}...")
+        
+        try:
+            meal_plan_data = json.loads(response_text)
+            return meal_plan_data
+        except json.JSONDecodeError as json_error:
+            print(f"JSON parsing error: {json_error}")
+            print(f"Response around error: {response_text[max(0, json_error.pos-100):json_error.pos+100]}")
+            raise json_error
         
     except Exception as e:
         print(f"Error generating meal plan: {str(e)}")
