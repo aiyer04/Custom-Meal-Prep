@@ -1,38 +1,733 @@
+/* Import Satoshi and Instrument Serif fonts */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap');
+
+/* ============ CSS Variables - Company Colors ============ */
+:root {
+  /* Backgrounds */
+  --bg-page: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-section: rgba(243, 234, 255, 0.3);
+  
+  /* Text */
+  --text-primary: rgb(24, 24, 24);
+  --text-secondary: rgb(112, 112, 112);
+  --text-muted: rgb(143, 143, 143);
+  
+  /* Borders */
+  --border-light: rgba(24, 24, 24, 0.1);
+  --border-medium: rgba(24, 24, 24, 0.2);
+  --border-strong: rgba(24, 24, 24, 0.3);
+  
+  /* Brand Colors */
+  --brand-primary: rgb(0, 128, 255);
+  --brand-hover: rgb(0, 153, 255);
+  --brand-active: rgb(0, 102, 204);
+  
+  /* Gradients */
+  --gradient-button: linear-gradient(168deg, rgb(67, 67, 67) -63%, rgb(0, 0, 0) 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(243, 234, 255, 0.8) 0%, rgba(255, 232, 240, 0.8) 25%, rgba(232, 244, 255, 0.8) 50%, rgba(255, 232, 213, 0.8) 75%, rgba(243, 234, 255, 0.8) 100%);
+}
+
+/* ============ Global Styles ============ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+
 .App {
-    text-align: center;
+  min-height: 100vh;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* ============ Typography ============ */
+.heading-1 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+  font-size: clamp(32px, 5vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.heading-2 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: clamp(24px, 4vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
+.heading-3 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.heading-4 {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+}
+
+.body-large {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.body-medium {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.body-small {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--text-muted);
+}
+
+.link-text {
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--brand-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-text:hover {
+  color: var(--brand-hover);
+}
+
+/* ============ Buttons ============ */
+.btn-primary {
+  background: var(--gradient-button);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: scale(1.04);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  border: 1px solid rgba(24, 24, 24, 0.2);
+  border-radius: 100px;
+  padding: 14px 24px;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.3;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ============ Auth Pages ============ */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-hero);
+  padding: 24px;
+}
+
+.auth-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 48px;
+  max-width: 450px;
+  width: 100%;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ============ Profile Page ============ */
+.profile-container {
+  min-height: 100vh;
+  background: var(--bg-section);
+  padding: 48px 24px;
+}
+
+.profile-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 48px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ============ Forms ============ */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 16px;
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+  background: var(--bg-card);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+}
+
+select.input-field {
+  cursor: pointer;
+}
+
+.tag-input-container {
+  display: flex;
+  gap: 8px;
+}
+
+.tag-input-container .input-field {
+  flex: 1;
+}
+
+.tag-input-container .btn-secondary {
+  flex-shrink: 0;
+  width: auto;
+  padding: 12px 20px;
+  min-height: auto;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag {
+  background: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: 100px;
+  padding: 6px 12px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.tag button:hover {
+  color: var(--text-primary);
+}
+
+/* ============ Dashboard ============ */
+.dashboard-container {
+  min-height: 100vh;
+  background: var(--bg-page);
+}
+
+.navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background: rgba(24, 24, 24, 0.05);
+  color: var(--brand-primary);
+}
+
+.dashboard-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+.dashboard-header .btn-primary {
+  width: auto;
+  min-width: 200px;
+}
+
+/* ============ Meal Plan Grid ============ */
+.meal-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px 24px;
+}
+
+.day-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.2s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--border-medium);
+}
+
+.day-card h3 {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.meal-card {
+  background: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.meal-card:last-child {
+  margin-bottom: 0;
+}
+
+.meal-card.dining-out {
+  opacity: 0.6;
+  background: rgba(243, 234, 255, 0.15);
+}
+
+.meal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.meal-type {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.dining-out-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dining-out-toggle input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.nutrition-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.nutrition-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nutrition-item .caption {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.view-recipe-btn {
+  width: 100%;
+  padding: 8px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: 8px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--brand-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 12px;
+}
+
+.view-recipe-btn:hover {
+  background: rgba(0, 128, 255, 0.05);
+  border-color: var(--brand-primary);
+}
+
+/* ============ Modal ============ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: 12px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0px 16px 48px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: var(--bg-card);
+  z-index: 10;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 32px;
+}
+
+.nutrition-details {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: var(--bg-section);
+  border-radius: 8px;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.nutrition-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipe-section {
+  margin-bottom: 32px;
+}
+
+.recipe-section:last-child {
+  margin-bottom: 0;
+}
+
+.recipe-section h3 {
+  margin-bottom: 16px;
+}
+
+.ingredient-list,
+.instruction-list {
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+.ingredient-list li,
+.instruction-list li {
+  margin-bottom: 8px;
+  padding-left: 8px;
+}
+
+/* ============ Grocery List ============ */
+.grocery-list-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: 800px;
+}
+
+.grocery-list {
+  list-style: none;
+  padding: 0;
+}
+
+.grocery-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.grocery-item:last-child {
+  border-bottom: none;
+}
+
+.grocery-bullet {
+  color: var(--brand-primary);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ============ Utility States ============ */
+.loading-state {
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-light);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  color: var(--text-secondary);
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  color: rgb(200, 0, 0);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+/* ============ Responsive Design ============ */
+@media (max-width: 809px) {
+  .navbar {
     flex-direction: column;
-    align-items: center;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+    width: 100%;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-header .btn-primary {
+    width: 100%;
+  }
+
+  .meal-plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .auth-card,
+  .profile-card {
+    padding: 32px 24px;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+  }
+
+  .modal-header,
+  .modal-body {
+    padding: 24px;
+  }
+
+  .nutrition-summary {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
 }
 
-.App-link {
-    color: #61dafb;
+@media (min-width: 810px) and (max-width: 1199px) {
+  .meal-plan-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+@media (min-width: 1200px) {
+  .meal-plan-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
